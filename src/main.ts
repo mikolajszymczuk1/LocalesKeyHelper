@@ -1,8 +1,8 @@
 import path from 'path';
 import { promises as fs } from 'fs';
-import { findTranslationsTargetFiles, getAllProjectFiles } from './mod/filesTravel';
-import { loadTranslationsFilesContent } from './mod/filesOperations';
-import { flattenKeys } from './mod/objectTransform';
+import { findTranslationsTargetFiles, getAllProjectFiles } from '@/mod/filesTravel';
+import { loadTranslationsFilesContent } from '@/mod/filesOperations';
+import { flattenKeys } from '@/mod/objectTransform';
 
 const main = async (): Promise<void> => {
   const args = process.argv.slice(2);

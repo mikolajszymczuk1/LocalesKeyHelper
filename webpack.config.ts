@@ -15,6 +15,9 @@ const config: Configuration = {
     clean: true,
   },
   resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
     extensions: ['.ts', '.js'],
   },
   module: {

@@ -6,7 +6,7 @@
     "build": "node -r ts-node/register ./node_modules/webpack/bin/webpack.js --config webpack.config.ts --mode production",
     "checkTypes": "tsc",
     "start": "npm run checkTypes && npm run build && node dist/findUnusedKeys.min.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -14,9 +14,13 @@
   "description": "",
   "devDependencies": {
     "@swc/core": "^1.11.1",
+    "@swc/jest": "^0.2.37",
+    "@types/jest": "^29.5.14",
     "compression-webpack-plugin": "^11.1.0",
+    "jest": "^29.7.0",
     "swc-loader": "^0.2.6",
     "terser-webpack-plugin": "^5.3.11",
+    "ts-jest": "^29.2.6",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
     "webpack": "^5.98.0",
