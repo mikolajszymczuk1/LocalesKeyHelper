@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node -r ts-node/register ./node_modules/webpack/bin/webpack.js --config webpack.config.ts --mode production",
     "checkTypes": "tsc",
-    "start": "npm run checkTypes && npm run build && node dist/findUnusedKeys.js",
+    "start": "npm run checkTypes && npm run build && node dist/findUnusedKeys.min.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -11,7 +11,7 @@ const config: Configuration = {
   entry: './src/main.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'findUnusedKeys.js',
+    filename: 'findUnusedKeys.min.js',
     clean: true,
   },
   resolve: {
@@ -45,14 +45,20 @@ const config: Configuration = {
   },
   devtool: isProduction ? 'source-map' : 'inline-source-map',
   optimization: {
-    minimize: isProduction,
+    minimize: true,
     minimizer: [
       new TerserPlugin({
+        parallel: true,
         terserOptions: {
           compress: {
-            drop_console: true,
-            pure_funcs: ['console.info', 'console.debug']
+            drop_console: false,
+            passes: 3,
           },
+          mangle: true,
+          format: {
+            comments: false,
+            max_line_len: 0,
+          }
         },
       }),
     ],

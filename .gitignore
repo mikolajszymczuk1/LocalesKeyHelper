@@ -229,6 +229,8 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
+.DS_Store
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
