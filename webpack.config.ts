@@ -1,5 +1,7 @@
 import path from 'path';
 import type { Configuration } from 'webpack';
+import CompressionPlugin from 'compression-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -8,8 +10,8 @@ const config: Configuration = {
   target: 'node',
   entry: './src/main.ts',
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'findUnusedKeys.js',
     clean: true,
   },
   resolve: {
@@ -44,7 +46,28 @@ const config: Configuration = {
   devtool: isProduction ? 'source-map' : 'inline-source-map',
   optimization: {
     minimize: isProduction,
-  }
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            drop_console: true,
+            pure_funcs: ['console.info', 'console.debug']
+          },
+        },
+      }),
+    ],
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
+  plugins: [
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      test: /\.(js|ts)$/,
+      threshold: 1024 * 10,
+      minRatio: 0.8,
+    })
+  ]
 };
 
 export default config;

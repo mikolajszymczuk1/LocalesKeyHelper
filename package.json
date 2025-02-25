@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "src/main.ts",
   "scripts": {
-    "build": "node -r ts-node/register ./node_modules/webpack/bin/webpack.js --config webpack.config.ts",
+    "build": "node -r ts-node/register ./node_modules/webpack/bin/webpack.js --config webpack.config.ts --mode production",
     "checkTypes": "tsc",
-    "start": "npm run checkTypes && npm run build && node build/main.js",
+    "start": "npm run checkTypes && npm run build && node dist/findUnusedKeys.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,7 +14,9 @@
   "description": "",
   "devDependencies": {
     "@swc/core": "^1.11.1",
+    "compression-webpack-plugin": "^11.1.0",
     "swc-loader": "^0.2.6",
+    "terser-webpack-plugin": "^5.3.11",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
     "webpack": "^5.98.0",

@@ -54,9 +54,11 @@ const main = async (): Promise<void> => {
 
       for (const key of keys) {
         const onlyKeyToCheck = key.split('.').pop();
+        const regex = new RegExp(`(?:['"]${onlyKeyToCheck}['"]|\\.${onlyKeyToCheck}\\b)`, 'g');
+
         let isUsed = false;
         for (const { text } of projectFilesContents) {
-          if (text.includes(onlyKeyToCheck!)) {
+          if (regex.test(text)) {
             isUsed = true;
             break;
           }
